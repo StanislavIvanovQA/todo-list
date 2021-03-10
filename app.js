@@ -5,10 +5,13 @@ const date = require(__dirname + "/date.js");
 const mongoose = require("mongoose");
 const _ = require("lodash");
 const { SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS } = require("constants");
-mongoose.connect("mongodb+srv://MongoUser:Test1234@cluster0.t1icl.mongodb.net/todolistDB?retryWrites=true&w=majority", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect(
+  "mongodb+srv://MongoUser:Test1234@cluster0.t1icl.mongodb.net/todolistDB?retryWrites=true&w=majority",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
+);
 
 const itemSchema = new mongoose.Schema({
   itemBody: String,
@@ -74,9 +77,11 @@ app.post("/", function (req, res) {
   }
 });
 
-app.listen(3000, function () {
-  console.log("Server is running");
-});
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+}
+app.listen(port);
 
 app.get("/:customListName", (req, res) => {
   const customListName = _.capitalize(req.params.customListName);
