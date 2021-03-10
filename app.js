@@ -5,7 +5,7 @@ const date = require(__dirname + "/date.js");
 const mongoose = require("mongoose");
 const _ = require("lodash");
 const { SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS } = require("constants");
-mongoose.connect("mongodb://localhost:27017/todolistDB", {
+mongoose.connect("mongodb+srv://MongoUser:Test1234@cluster0.t1icl.mongodb.net/todolistDB?retryWrites=true&w=majority", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
